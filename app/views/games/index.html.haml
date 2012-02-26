@@ -1,0 +1,75 @@
+- content_for :navbar do
+  /todo this should be in a partial somewhere
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        .row
+          .span10.offset1
+            = link_to 'Battleship', '#', :class => 'brand'
+            %ul.nav.pull-left
+              %li.active
+                = link_to 'Game', games_path
+              %li.dropdown
+                %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                  History
+                  %b.caret
+                %ul.dropdown-menu
+                  %li.nav-header Recent games
+                  %li= link_to 'Recent game #1', '#'
+                  %li= link_to 'Recent game #2', '#'
+                  %li= link_to 'Recent game #3', '#'
+                  %li.divider
+                  %li= link_to 'More...', '#'
+              %li= link_to 'Hall of Fame', '#'
+              %li= link_to 'Help', '#'
+              %li= link_to 'About', '#'
+            %ul.nav.pull-right
+              %li= link_to 'Sign out', '/'
+
+.row
+  .span5.offset1
+    %h1 Game with XYZ
+    %h3 In progress - your move
+  .span5.user-label
+    %p Signed in as Ninja Burger
+  .span10.offset1
+    %hr
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active= link_to "XYZ's board", '#remote', 'data-toggle' => 'tab'
+        %li= link_to "Your board", '#local', 'data-toggle' => 'tab'
+      .tab-content
+        #remote.tab-pane.active
+          /empty
+        #local.tab-pane
+          /empty
+    #game-canvas
+      /noempty
+    #game-info
+      .info-head
+        %strong
+          Ships left:
+          = 4 + 3 + 2 + 1
+      .info-count Carriers: 1
+      .info-count Battleships: 2
+      .info-count Destroyers: 3
+      .info-count Subs: 4
+      .info-history
+        .info-head Game history
+        .well
+          %ul
+            %li= log('XYZ', 3, 5, 'missed')
+            %li= log('You', 4, 4, 'you hit!')
+            %li= log('<b>XSS</b>', 5, 5, 'test') 
+            %li more log lines...
+            %li more log lines...
+            %li lorem
+            %li ipsum
+            %li etc
+      .info-capitulate
+        = link_to 'Admit defeat', '#', :class => 'btn btn-danger'
+
+.row
+  .span10.offset1
+    %hr
+    %p Maybe a chat area? (if there is time)
