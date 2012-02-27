@@ -1,0 +1,27 @@
+- content_for :navbar do
+  = render :partial => 'navbar'
+
+.row
+  .span5.offset1
+    %h1 Help
+  .span5.user-label
+    %p Signed in as Ninja Burger
+
+.row
+  .span10.offset1
+    %hr
+
+.row
+  .span8.offset1
+    %h3 Topic 1
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum arcu sed nunc condimentum luctus. Suspendisse potenti. Nunc rutrum neque vel augue pulvinar tristique. Integer id mauris velit, vitae consectetur nulla. Nulla augue arcu, aliquam et condimentum nec, hendrerit a ipsum. Aliquam auctor gravida sodales. Nunc fermentum vestibulum est, eu viverra ligula imperdiet eu. Pellentesque ac mauris turpis, a vehicula magna. Praesent non lorem augue. In felis augue, aliquam quis facilisis et, elementum sit amet leo. Suspendisse vitae mi magna, in commodo diam.
+    %h3 Topic 2
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum arcu sed nunc condimentum luctus. Suspendisse potenti. Nunc rutrum neque vel augue pulvinar tristique. Integer id mauris velit, vitae consectetur nulla. Nulla augue arcu, aliquam et condimentum nec, hendrerit a ipsum. Aliquam auctor gravida sodales. Nunc fermentum vestibulum est, eu viverra ligula imperdiet eu. Pellentesque ac mauris turpis, a vehicula magna. Praesent non lorem augue. In felis augue, aliquam quis facilisis et, elementum sit amet leo. Suspendisse vitae mi magna, in commodo diam.
+    %h3 Topic 3
+    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum arcu sed nunc condimentum luctus. Suspendisse potenti. Nunc rutrum neque vel augue pulvinar tristique. Integer id mauris velit, vitae consectetur nulla. Nulla augue arcu, aliquam et condimentum nec, hendrerit a ipsum. Aliquam auctor gravida sodales. Nunc fermentum vestibulum est, eu viverra ligula imperdiet eu. Pellentesque ac mauris turpis, a vehicula magna. Praesent non lorem augue. In felis augue, aliquam quis facilisis et, elementum sit amet leo. Suspendisse vitae mi magna, in commodo diam.
+  .span2.help_contents
+    %h4 Contents
+    %ul.nav.nav-tabs.nav-stacked
+      %li= link_to 'Topic 1', '#'
+      %li= link_to 'Topic 2', '#'
+      %li= link_to 'Topic 3', '#'

@@ -3,8 +3,8 @@
 
 .row
   .span5.offset1
-    %h1 Game with XYZ
-    %h3 In progress - your move
+    %h1 Game with XYZ - Replay
+    %h3 You won!
   .span5.user-label
     %p Signed in as Ninja Burger
 .row
@@ -21,15 +21,8 @@
           /empty
     #game-canvas
       /noempty
-    #game-info
-      .info-head
-        %strong
-          Ships left:
-          = 4 + 3 + 2 + 1
-      .info-count Carriers: 1
-      .info-count Battleships: 2
-      .info-count Destroyers: 3
-      .info-count Subs: 4
+    #reply-panel
+      .info-head Turn 4
       .info-history
         .info-head Game history
         .well
@@ -42,10 +35,11 @@
             %li lorem
             %li ipsum
             %li etc
-      .info-capitulate
-        = link_to 'Admit defeat', '#', :class => 'btn btn-danger'
-
+      .btn-group
+        .btn= link_to 'Previous', '#'
+        .btn= link_to 'Resume replay', '#'
+        .btn= link_to 'Next', '#'
 .row
   .span10.offset1
     %hr
-    %p Maybe a chat area? (if there is time)
+    %p Maybe a chat history area? (if there is time)

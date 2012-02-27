@@ -1,0 +1,26 @@
+/todo this should be in a partial somewhere
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .row
+        .span10.offset1
+          = link_to 'Battleship', '#', :class => 'brand'
+          %ul.nav.pull-left
+            %li.active
+              = link_to 'Game', games_path
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                History
+                %b.caret
+              %ul.dropdown-menu
+                %li.nav-header Recent games
+                %li= link_to 'Recent game #1', game_path(:id => 1)
+                %li= link_to 'Recent game #2', game_path(:id => 1)
+                %li= link_to 'Recent game #3', game_path(:id => 1)
+                %li.divider
+                %li= link_to 'More...', '#'
+            %li= link_to 'Hall of Fame', hof_path
+            %li= link_to 'Help', help_path
+            %li= link_to 'About', about_path
+          %ul.nav.pull-right
+            %li= link_to 'Sign out', '/'

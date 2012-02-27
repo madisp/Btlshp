@@ -2,6 +2,10 @@ Btlshp::Application.routes.draw do
 
   resources :games
 
+  match 'help' => 'help#index'
+  match 'about' => 'help#about'
+  match 'hof' => 'scores#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

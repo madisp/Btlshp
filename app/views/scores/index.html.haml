@@ -1,0 +1,28 @@
+- content_for :navbar do
+  = render :partial => 'navbar'
+
+.row
+  .span5.offset1
+    %h1 Hall of Fame
+  .span5.user-label
+    %p Signed in as Ninja Burger
+
+.row
+  .span10.offset1
+    %hr
+
+.row
+  .span7.offset1
+    %table.hof-table
+      %tr
+        %th User
+        %th Wins
+        %th Losses
+      %tr
+        %td XYZ
+        %td 5
+        %td 0
+      %tr
+        %td Ninja Burger (That's you!)
+        %td 4
+        %td 1
