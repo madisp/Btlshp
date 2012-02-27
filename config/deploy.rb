@@ -1,3 +1,11 @@
+# rvm setup
+
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                  # Load RVM's capistrano plugin.
+set :rvm_ruby_string, '1.9.3'        # Or whatever env you want it to run in.
+
+# application setup
+
 set :application, "btlshp"
 set :repository,  "git://github.com/madisp/Btlshp.git"
 
@@ -56,5 +64,5 @@ end
 
 before 'deploy:symlink' do
   security.symlinks.update
-  ci.versions.append_version
+  ci.append_version
 end
