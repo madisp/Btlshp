@@ -28,54 +28,54 @@ http://btlshp.madisp.com
    3. Mängu eesmärgiks on võita vastasmängijat, uputades pommitamisega kõik vastasmängija laevad.
    4. Kui mänguga on liitunud täpselt kaks mängijat, avaneb mängijail võimalus asuda paigutama mänguväljale oma laevastikku.
 2. Laevastiku paigutamine
-2.1. Kummalgi mängijal on oma 10x10 mänguväli.
-2.2. Enne mängu alustamist paigutab kumbki mängija oma mänguväljale oma laevastiku, kuhu kuuluvad:
-2.2.1. Üks nelja ruudu pikkune laev
-2.2.2. Kaks kolme ruudu pikkust laeva
-2.2.3. Kolm kahe ruudu pikkust laeva
-2.2.4. Neli ühe ruudu pikkust laeva
-2.3. Vastasmängija mänguväli on mängijale nähtav, sellele paigutatud laevastik aga mitte.
-2.4. Laevade paigutamine mänguväljakule toimub hiirekursori abil
-2.5. Mänguväljakule paigutatud laevad ei tohi omavahel ei küljetsi ega nurgiti kokku puutuda
-2.6. Kõik laevad on sirge kujuga, "tetrise" kujulisi laevu mängus ei eksisteeri
-2.7. Juba asetatud laevu peab saama mänguväljakul ringi paigutada, seni kuni mängija ei ole valikut lõplikult kinnitanud
-2.8. Peab eksisteerima võimalus kinnitada oma laevastiku lõplik paigutus mänguväljakul mängu alustamiseks
+   1. Kummalgi mängijal on oma 10x10 mänguväli.
+   2. Enne mängu alustamist paigutab kumbki mängija oma mänguväljale oma laevastiku, kuhu kuuluvad:
+      1. Üks nelja ruudu pikkune laev
+      2. Kaks kolme ruudu pikkust laeva
+      3. Kolm kahe ruudu pikkust laeva
+      4. Neli ühe ruudu pikkust laeva
+   3. Vastasmängija mänguväli on mängijale nähtav, sellele paigutatud laevastik aga mitte.
+   4. Laevade paigutamine mänguväljakule toimub hiirekursori abil
+   5. Mänguväljakule paigutatud laevad ei tohi omavahel ei küljetsi ega nurgiti kokku puutuda
+   6. Kõik laevad on sirge kujuga, "tetrise" kujulisi laevu mängus ei eksisteeri
+   7. Juba asetatud laevu peab saama mänguväljakul ringi paigutada, seni kuni mängija ei ole valikut lõplikult kinnitanud
+   8. Peab eksisteerima võimalus kinnitada oma laevastiku lõplik paigutus mänguväljakul mängu alustamiseks
 3. Mängu mängimine
-3.1. Mäng algab hetkel kui mõlemad mängijad on oma laevastiku väljakule paigutanud ning paigutuse kinnitanud.
-3.2. Esimese käigu mängus teeb juhuslikult valitud mängija
-3.3. Mängu käiguks loetakse pommi asetamist vastase väljakule
-3.4. Kui pomm tabas vastase laeva või laeva osa, saab sama mängija teostada järgmise käigu
-3.5. Kui käik ei tabanud vastase laeva või laeva osa, läheb mängujärg üle vastasmängijale.
-3.6. Kõik lauale asetatud pommid peavad olema mängu käigus eristatavad veel pommitamata ruutudest.
-3.7. Kõik tabamuse saanud laevad või laeva osad peavad olema mängu käigus eristatavad nii mööda läinud tabamusest kui veel pommitamata mänguväljast. Kui tabati ainult laeva osa ja mitte tervet laeva siis ei tohi kuvalt olla võimalik välja lugeda mis ruudustiku osades asuvad laeva ülejäänud osad.
-3.8. Kui laeva kõik osad on tabamuse saanud loetakse laev uppunuks. Uppunud laev kuvatakse mänguväljal muudest väljadest eristuvana.
-3.9. Punktides 3.6.- 3.9. toodud tulemuste kuvamine peab olema realiseeritud mõlema mängija mänguväljale - käigu tulemus peab kuvatama nii pommi asetanud mängija mängulaual kui ka pommitatava mängija mängulaual.
-3.10. Mäng lõpeb ühe mängija võiduga hetkel kui vastasmängija kogu laevastik on uppunud.
+   1. Mäng algab hetkel kui mõlemad mängijad on oma laevastiku väljakule paigutanud ning paigutuse kinnitanud.
+   2. Esimese käigu mängus teeb juhuslikult valitud mängija
+   3. Mängu käiguks loetakse pommi asetamist vastase väljakule
+   4. Kui pomm tabas vastase laeva või laeva osa, saab sama mängija teostada järgmise käigu
+   5. Kui käik ei tabanud vastase laeva või laeva osa, läheb mängujärg üle vastasmängijale.
+   6. Kõik lauale asetatud pommid peavad olema mängu käigus eristatavad veel pommitamata ruutudest.
+   7. Kõik tabamuse saanud laevad või laeva osad peavad olema mängu käigus eristatavad nii mööda läinud tabamusest kui veel pommitamata mänguväljast. Kui tabati ainult laeva osa ja mitte tervet laeva siis ei tohi kuvalt olla võimalik välja lugeda mis ruudustiku osades asuvad laeva ülejäänud osad.
+   8. Kui laeva kõik osad on tabamuse saanud loetakse laev uppunuks. Uppunud laev kuvatakse mänguväljal muudest väljadest eristuvana.
+   9. Punktides 3.6.- 3.9. toodud tulemuste kuvamine peab olema realiseeritud mõlema mängija mänguväljale - käigu tulemus peab kuvatama nii pommi asetanud mängija mängulaual kui ka pommitatava mängija mängulaual.
+   10. Mäng lõpeb ühe mängija võiduga hetkel kui vastasmängija kogu laevastik on uppunud.
 4. Replay
-4.1. Juba lõppenud mängud salvestatakse kasutaja brauserisse kasutades HTML5 LocalStorage võimalusi
-4.2. Lõppenud mängude hulgast peab olema võimalik valida välja mäng selle taasesitamiseks.
-4.3. Mängu taasesitamisel peab olema võimalik mängu käike teatud intervalli (nt 1000ms) tagant järjest ette mängida või liikuda läbi ajaloo edasi või tagasi vastavalt kasutaja sisendile.
-4.4. Mängitud mängude ajalugu tuleb säilitada minimaalselt brauseriakna sulgemiseni
+   1. Juba lõppenud mängud salvestatakse kasutaja brauserisse kasutades HTML5 LocalStorage võimalusi
+   2. Lõppenud mängude hulgast peab olema võimalik valida välja mäng selle taasesitamiseks.
+   3. Mängu taasesitamisel peab olema võimalik mängu käike teatud intervalli (nt 1000ms) tagant järjest ette mängida või liikuda läbi ajaloo edasi või tagasi vastavalt kasutaja sisendile.
+   4. Mängitud mängude ajalugu tuleb säilitada minimaalselt brauseriakna sulgemiseni
 5. Edetabel
-5.1. Kõikide lõppenud mängude tulemus (osalejad, võitja) tuleb salvestada mängude ajalugu
-5.2. Mängude ajalugu tuleb salvestada serveris mõnda relatsioonilisse andmebaasi
-5.3. Mängude ajaloo põhjal peab olema võimalik rakenduses kuvada mängijate edetabelit
-5.4. Edetabelis kuvatakse mängija ID (sõltub kasutatavast isikutuvastamise mehhanismist), võitude arv, kaotuste arv ning võitude suhe kogu peetud mängude arvu
+   1. Kõikide lõppenud mängude tulemus (osalejad, võitja) tuleb salvestada mängude ajalugu
+   2. Mängude ajalugu tuleb salvestada serveris mõnda relatsioonilisse andmebaasi
+   3. Mängude ajaloo põhjal peab olema võimalik rakenduses kuvada mängijate edetabelit
+   4. Edetabelis kuvatakse mängija ID (sõltub kasutatavast isikutuvastamise mehhanismist), võitude arv, kaotuste arv ning võitude suhe kogu peetud mängude arvu
 6. Autentimine
-6.1. Mängijad tuleb autentida vastu mõnd välist teenusepakkujat. Lubatud on näiteks Facebook ID, Google Account, OpenID. Muude valikute puhul kooskõlastage valik oma praktikumijuhendajaga
-6.2. Mängu ei saa alustada enne isikut tuvastamata.
+   1. Mängijad tuleb autentida vastu mõnd välist teenusepakkujat. Lubatud on näiteks Facebook ID, Google Account, OpenID. Muude valikute puhul kooskõlastage valik oma praktikumijuhendajaga
+   2. Mängu ei saa alustada enne isikut tuvastamata.
 7. Mittefunktsionaalsed nõuded
-7.1. Valmiv rakendus peab olema koostatud kasutades ainult HTML, CSS ning Javascript tehnoloogiaid ning olema brauseripõhine. Lisapluginate (Flash, Java appletid, Silverlight, etc) kasutamine ei ole lubatud.
-7.2. Rakendus peab töötama vähemalt kahes viiest levinud veebibrauserist (Internet Explorer, Firefox, Google Chrome, Safari, Opera). Rakendus peab töötama vähemalt viimase stabiilse versiooniga konkreetsest brauserist.
-7.3. Rakenduse kasutajaliidese elemendid peavad olema realiseeritud kasutades kas HTML DIV elemente või Canvas abil.
-7.4. Kõik kujundusega seotu (värvid, fondid, positsioneerimine, etc) peavad olema realiseeritud CSS abil.
-7.5. Sündmuste dünaamika peab olema realiseeritud Javascript abil.
-7.6. Serveris asuv loogika võib olla realiseeritud ükskõik millises seda võimaldavas programmeerimiskeeles, võimalike komplikatsioonide vältimiseks on see enne serveriosa realiseerimist kooskõlastada oma praktikumijuhendajaga.
-7.7. Lähtekood peab asuma Google Code, Github või Bitbucket koodirepositooriumis. Kasutada võib SVN, Git või Mercurial versioonihaldussüsteemi. Repositoorium peab lugemiseks olema kasutatav konkreetse rühma praktikumijuhendajale. Iga kodutöö esitamise tähtaeg peab olema TAGitud vastava kodutöö numbriga.
-7.8. Ühe mängija poolt tehtud käik peab kohe (<100ms) jõudma teise mängija brauserisse. Selleks tuleb rühmal oma valikul kasutada kas WebSocketeid või long polling tehnoloogiat. Nimetatud päringukiirus peab olema tagatud juhul kui mäng toimub lokaalses masinas, üle võrguühenduse mängides on lubatud võrgu latentsusest tuleneva aja lisandumine.
-7.9. Mängulaual toimuvad sündmused peavad olema realiseeritud animatsioone kasutades. Minimaalselt peavad animeeritud olema
-7.9.1. Laeva asetamine mängulauale
-7.9.2. Pommi suunamine sihtmärgile
-7.9.3. Pommi plahvatus sihtmärgis
-7.9.4. Võidu/kaotuse sündmuse teavitus
-10. Loogiliselt sellega seonduvad sündmused (laeva uppumine, pommi plahvatus, etc) peavad sündmuse käigus mängima sellekohast audioklippi
+   1. Valmiv rakendus peab olema koostatud kasutades ainult HTML, CSS ning Javascript tehnoloogiaid ning olema brauseripõhine. Lisapluginate (Flash, Java appletid, Silverlight, etc) kasutamine ei ole lubatud.
+   2. Rakendus peab töötama vähemalt kahes viiest levinud veebibrauserist (Internet Explorer, Firefox, Google Chrome, Safari, Opera). Rakendus peab töötama vähemalt viimase stabiilse versiooniga konkreetsest brauserist.
+   3. Rakenduse kasutajaliidese elemendid peavad olema realiseeritud kasutades kas HTML DIV elemente või Canvas abil.
+   4. Kõik kujundusega seotu (värvid, fondid, positsioneerimine, etc) peavad olema realiseeritud CSS abil.
+   5. Sündmuste dünaamika peab olema realiseeritud Javascript abil.
+   6. Serveris asuv loogika võib olla realiseeritud ükskõik millises seda võimaldavas programmeerimiskeeles, võimalike komplikatsioonide vältimiseks on see enne serveriosa realiseerimist kooskõlastada oma praktikumijuhendajaga.
+   7. Lähtekood peab asuma Google Code, Github või Bitbucket koodirepositooriumis. Kasutada võib SVN, Git või Mercurial versioonihaldussüsteemi. Repositoorium peab lugemiseks olema kasutatav konkreetse rühma praktikumijuhendajale. Iga kodutöö esitamise tähtaeg peab olema TAGitud vastava kodutöö numbriga.
+   8. Ühe mängija poolt tehtud käik peab kohe (<100ms) jõudma teise mängija brauserisse. Selleks tuleb rühmal oma valikul kasutada kas WebSocketeid või long polling tehnoloogiat. Nimetatud päringukiirus peab olema tagatud juhul kui mäng toimub lokaalses masinas, üle võrguühenduse mängides on lubatud võrgu latentsusest tuleneva aja lisandumine.
+   9. Mängulaual toimuvad sündmused peavad olema realiseeritud animatsioone kasutades. Minimaalselt peavad animeeritud olema
+      1. Laeva asetamine mängulauale
+      2. Pommi suunamine sihtmärgile
+      3. Pommi plahvatus sihtmärgis
+      4. Võidu/kaotuse sündmuse teavitus
+   10. Loogiliselt sellega seonduvad sündmused (laeva uppumine, pommi plahvatus, etc) peavad sündmuse käigus mängima sellekohast audioklippi
