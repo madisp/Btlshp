@@ -1,6 +1,6 @@
 == Laevade pommitamine
 
-Projekt aines Veebirakenduste loomine.
+Projekt aines veebirakenduste loomine.
 
 Madis Pink
 
@@ -23,10 +23,10 @@ http://btlshp.madisp.com
 == Nõuded
 
 1. Mängu alustamine
-  1. Mängus osaleb kaks mängijat.
-  2. Mängijad liituvad mängu läbi nn. lobby, kus on näha kõiki käimasolevaid mänge, võimalus uut mängu luua või liituda mõne olemasoleva mänguga, kus osalemas täpselt üks mängija.
-  3. Mängu eesmärgiks on võita vastasmängijat, uputades pommitamisega kõik vastasmängija laevad.
-  4. Kui mänguga on liitunud täpselt kaks mängijat, avaneb mängijail võimalus asuda paigutama mänguväljale oma laevastikku.
+   1. Mängus osaleb kaks mängijat.
+   2. Mängijad liituvad mängu läbi nn. lobby, kus on näha kõiki käimasolevaid mänge, võimalus uut mängu luua või liituda mõne olemasoleva mänguga, kus osalemas täpselt üks mängija.
+   3. Mängu eesmärgiks on võita vastasmängijat, uputades pommitamisega kõik vastasmängija laevad.
+   4. Kui mänguga on liitunud täpselt kaks mängijat, avaneb mängijail võimalus asuda paigutama mänguväljale oma laevastikku.
 2. Laevastiku paigutamine
 2.1. Kummalgi mängijal on oma 10x10 mänguväli.
 2.2. Enne mängu alustamist paigutab kumbki mängija oma mänguväljale oma laevastiku, kuhu kuuluvad:
