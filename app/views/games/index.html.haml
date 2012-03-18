@@ -4,46 +4,55 @@
 .row
   .span5.offset1
     %h1 Game with XYZ
-    %h3 In progress - your move
+    %h3#status-head Prepare for battle
   .span5.user-label
     %p Signed in as Ninja Burger
 .row
   .span10.offset1
     %hr
-    .tabbable
+    #board-tabs.tabbable
       %ul.nav.nav-tabs
-        %li.active= link_to "XYZ's board", '#remote', 'data-toggle' => 'tab'
-        %li= link_to "Your board", '#local', 'data-toggle' => 'tab'
-      .tab-content
-        #remote.tab-pane.active
-          /empty
-        #local.tab-pane
-          /empty
+        %li#remote= link_to "XYZ's board", '#show_remote'
+        %li#local.active= link_to "Your board", '#show_local'
     #game-canvas
       /noempty
     #game-info
-      .info-head
-        %strong
-          Ships left:
-          = 4 + 3 + 2 + 1
-      .info-count Carriers: 1
-      .info-count Battleships: 2
-      .info-count Destroyers: 3
-      .info-count Subs: 4
-      .info-history
-        .info-head Game history
-        .well
-          %ul
-            %li= log('XYZ', 3, 5, 'missed')
-            %li= log('You', 4, 4, 'you hit!')
-            %li= log('<b>XSS</b>', 5, 5, 'test') 
-            %li more log lines...
-            %li more log lines...
-            %li lorem
-            %li ipsum
-            %li etc
-      .info-capitulate
-        = link_to 'Admit defeat', '#', :class => 'btn btn-danger'
+      #game-prepare
+        .info-head
+          %strong Prepare your fleet!
+        .info-section
+          Drag the ships into the battlefield using your mouse.
+          Valid squares are green.
+          %br
+          Double click to rotate a ship (only works in staging area).
+        .info-section
+          = link_to 'Start game', '#', :class => 'btn btn-success disabled', :id => 'start-btn'
+        .info-section
+          = link_to 'Place ships (debug)', '#', :class => 'btn', :id => 'debug-ships'
+      #game-status
+        .info-head Your status
+        .info-count
+          %strong
+            Ships left:
+            %span#ship-count
+        .info-count
+          Carriers:
+          %span#carrier-count
+        .info-count
+          Battleships:
+          %span#battleship-count
+        .info-count
+          Destroyers:
+          %span#destroyer-count
+        .info-count
+          Subs:
+          %span#sub-count
+        .info-section
+          .info-head Game history
+          .well
+            %ul#game-log
+        .info-section
+          = link_to 'Admit defeat', '#', :class => 'btn btn-danger'
 
 .row
   .span10.offset1
