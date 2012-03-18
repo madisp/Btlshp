@@ -1,3 +1,7 @@
+# export our board obj
+
+root = exports ? this
+
 # important constants
 canvas_h = 320
 canvas_w = 640
@@ -62,47 +66,9 @@ sources = [
 ]
 
 # preload images
-preload_images = (cb) ->
-  n = 0
-  for src in sources
-    console.log 'preloading ' + src + '.png'
-    images[src] = new Image
-    images[src].onload = () ->
-      n += 1
-      if (n >= sources.length)
-        cb()
-    images[src].src = '/assets/' + src + '.png'
 
 # draw wireframes
 
-draw_wires = (stage) ->
-  layer = new Kinetic.Layer
-  wires = new Kinetic.Shape(
-    drawFunc = () ->
-      ctx = this.getContext()
-      ctx.beginPath()
-      ctx.lineWidth = 1
-      ctx.strokeStyle = 'black'
-      ctx.globalAlpha = 0.3
-      # draw frame
-      move(ctx, p0)
-      line(ctx, p(10,0))
-      line(ctx, p(10,10))
-      line(ctx, p(0,10))
-      ctx.closePath()
-      # draw frame contents
-      for i in [1..9]
-        # draw parallel to x
-        move(ctx, p(0, i))
-        line(ctx, p(10, i))
-        # draw parallel to y
-        move(ctx, p(i, 0))
-        line(ctx, p(i, 10))
-      ctx.stroke()
-      ctx.globalAlpha = 1.0
-  )
-  layer.add wires
-  stage.add layer
 
 #draw_tile = (layer, src, p) ->
 #  tile = new Kinetic.Image(
@@ -116,29 +82,6 @@ draw_wires = (stage) ->
 #  rand = Math.ceil(Math.random() * 2)
 #  'ocean_' + rand
 
-draw_terrain = (stage) ->
-  # using prerendered background instead
-  # draw terrain for game area
-#  for x in [0..9]
-#    for y in [0..9]
-#      rand = Math.ceil(Math.random() * 2)
-#      draw_tile(terrain, rand_ocean(), p(x,y))
-
-  # draw the "corners" to give a sense of space
-#  for j in [-1..-5]
-#    for i in [(-1-j)..10+j]
-#      draw_tile(terrain, rand_ocean(), p(i,j))
-#      draw_tile(terrain, rand_ocean(), p(j,i))
-#      draw_tile(terrain, rand_ocean(), p(i,9-j))
-#      draw_tile(terrain, rand_ocean(), p(9-j,i))
-  terrain = new Kinetic.Layer
-  background = new Kinetic.Image(
-    x: 0
-    y: 0
-    image: images['background']
-  )
-  terrain.add(background)
-  stage.add terrain
 
 draw_ship = (layer, src, p) ->
   p.y -= 5*tile_hh
@@ -185,14 +128,66 @@ init_game = () ->
   console.log $('#game-canvas').length
   if $('#game-canvas').length != 0
     stage = init_canvas()
-    preload_images(() -> 
+    preload_images(() ->
       draw_terrain(stage)
-      draw_wires(stage)
-      draw_ships(stage)
-      draw_smoke(stage)
-      draw_bomb(stage, 400, 30)
+      #draw_ships(stage)
+      #draw_smoke(stage)
+      #draw_bomb(stage, 400, 30)
     )
-#  add_terrain(stage)
 
-window.onload = () ->
-  init_game()
+class root.BtlBoard
+  preload_images: (cb) =>
+    n = 0
+    for src in sources
+      console.log 'preloading ' + src + '.png'
+      images[src] = new Image
+      images[src].onload = () ->
+        n += 1
+        if (n >= sources.length)
+          cb()
+      images[src].src = '/assets/' + src + '.png'
+
+  addwires: (layer) =>
+    wires = new Kinetic.Shape(
+      drawFunc = () ->
+        ctx = this.getContext()
+        ctx.beginPath()
+        ctx.lineWidth = 1
+        ctx.strokeStyle = 'black'
+        ctx.globalAlpha = 0.3
+        # draw frame
+        move(ctx, p0)
+        line(ctx, p(10,0))
+        line(ctx, p(10,10))
+        line(ctx, p(0,10))
+        ctx.closePath()
+        # draw frame contents
+        for i in [1..9]
+          # draw parallel to x
+          move(ctx, p(0, i))
+          line(ctx, p(10, i))
+          # draw parallel to y
+          move(ctx, p(i, 0))
+          line(ctx, p(i, 10))
+        ctx.stroke()
+        ctx.globalAlpha = 1.0
+    )
+    layer.add wires
+
+  addbg: (stage) =>
+    terrain = new Kinetic.Layer
+    background = new Kinetic.Image(
+      x: 0
+      y: 0
+      image: images['background']
+    )
+    terrain.add background
+    this.addwires terrain
+    stage.add terrain
+
+  init: (element) =>
+    stage = new Kinetic.Stage 'game-canvas', canvas_w, canvas_h
+    this.preload_images(() =>
+      this.addbg(stage))
+    stage
+    
