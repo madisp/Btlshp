@@ -18,18 +18,26 @@ class BtlGame
   fire: (x, y) =>
     if @state == 'player-turn'
       this.log("You fired at (#{x}, #{y})")
+      this.throbber('Waiting for intel')
+      @state = 'waiting'
+      @board.show_board 'remote'
+      this.onStateChanged
       @server.fire(x, y)
 
   # server callbacks
   
   result: (result) =>
     console.log result
+    if (result.w == 'local')
+      this.log("XYZ fired at (#{result.x}, #{result.y})")
     this.log(
       switch result.r
         when 'miss' then 'Missed'
         when 'hit' then 'Hit!'
         when 'sunk' then "Sunk #{result.s.t}"
     )
+    @board.show_result result
+    this.throbber(null)
 
   boardValidated: (ships) =>
     @board.commit_ships ships
@@ -53,6 +61,13 @@ class BtlGame
   playerTurn: () =>
     @state = 'player-turn'
     this.onStateChanged()
+    this.log('<b>Your turn</b>')
+
+  enemyTurn: () =>
+    @state = 'enemy-turn'
+    this.onStateChanged()
+    this.log('<b>XYZ\'s turn</b>')
+    this.throbber("Waiting for XYZ's turn")
 
   # UI hooks
 

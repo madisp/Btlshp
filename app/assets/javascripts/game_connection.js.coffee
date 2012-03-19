@@ -35,16 +35,43 @@ class root.Connection
     )
 
   fire: (x, y) =>
-    @playerTurns.push {x: x, y: y}
-    for ship in @aiShips
+    result = this.turn('remote', @playerTurns, @aiShips, x, y)
+    this.delay(300, () =>
+      @listener.result(result)
+      if result.r in ['hit', 'sunk']
+        @listener.playerTurn()
+      else
+        this.delay(2000, () =>
+          @listener.enemyTurn()
+          this.aiFire()
+        )
+    )
+
+  aiFire: () =>
+    x = Math.floor(Math.random() * 10)
+    y = Math.floor(Math.random() * 10)
+    result = this.turn('local', @aiTurns, @playerShips, x, y)
+    this.delay(2000, () =>
+      @listener.result(result)
+      if result.r in ['hit', 'sunk']
+        @listener.enemyTurn()
+        this.aiFire()
+      else
+        this.delay(1500, () =>
+          @listener.playerTurn()
+        )
+    )
+
+  turn: (board, turns, ships, x, y) =>
+    turns.push {x: x, y: y}
+    for ship in ships
       if this.intersects(ship, x, y)
         if this.sunk(@playerTurns, ship)
-          @listener.result({w: 'local', r: 'sunk', s: ship, x: x, y: y})
-          return
+          return {w: board, r: 'sunk', s: ship, x: x, y: y}
         else
-          @listener.result({w: 'local', r: 'hit', x: x, y: y})
-          return
-    @listener.result({w: 'local', r: 'miss', x: x, y: y})
+          return {w: board, r: 'hit', x: x, y: y}
+    {w: board, r: 'miss', x: x, y: y}
+    
 
   setListener: (listener) =>
     @listener = listener
@@ -63,7 +90,6 @@ class root.Connection
     return false
 
   sunk: (turns, ship) =>
-    console.log "Checking if #{ship.t} was sunk"
     points = ship_points(ship)
     c = 0
     for x in [points[0].x .. points[1].x]
@@ -71,7 +97,6 @@ class root.Connection
         if this.wasHit(turns, ship, x, y)
           c += 1
         else
-    console.log "#{c} hits vs #{ship_len(ship.t)}"
     return c == ship_len(ship.t)
 
   wasHit: (turns, ship, x, y) =>

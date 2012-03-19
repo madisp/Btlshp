@@ -82,7 +82,7 @@ sources = [
   'destroyer_x', 'destroyer_y',
   'sub_x', 'sub_y',
   # fx
-  'bomb'
+  'bomb', 'nuke', 'flag'
 ]
 
 draw_ship = (layer, src, p) ->
@@ -97,6 +97,23 @@ draw_ship = (layer, src, p) ->
     image: images[src]
   )
   layer.add ship
+
+draw_nuke = (layer, p) ->
+  img = new Kinetic.Image(
+    x: p.x + (tile_hw - 16)
+    y: p.y - 24
+    image: images['nuke']
+    alpha: 0.5
+  )
+  layer.add img
+
+draw_flag = (layer, p) ->
+  img = new Kinetic.Image(
+    x: p.x
+    y: p.y - 2 - tile_hh
+    image: images['flag']
+  )
+  layer.add img
 
 draw_ships = (stage) ->
   ships = new Kinetic.Layer
@@ -457,9 +474,27 @@ class root.BtlBoard
   start_placing: (ships) =>
     this.add_prep_overlay(ships) unless @prep_overlay?
 
+  show_result: (result) =>
+    obj =
+      switch result.w
+        when 'remote' then @remote
+        when 'local' then @local
+
+    if result.r == 'sunk'
+      obj.smoke.push {t: 'nuke', x: result.x, y: result.y}
+      obj.ships.push result.s
+    else if result.r == 'miss'
+      obj.smoke.push {t: 'flag', x: result.x, y: result.y}
+    else if result.r == 'hit'
+      obj.smoke.push {t: 'nuke', x: result.x, y: result.y}
+
+    this.show_board result.w
+
   show_board: (who) =>
+    console.log "show_board(#{who}, #{root.game.state})"
     if who == 'local'
       this.show_ships(@local.ships)
+      this.show_smoke(@local.smoke)
       @local.visible = true
       @remote.visible = false
       # add the bomb layer for later animation
@@ -467,6 +502,7 @@ class root.BtlBoard
       this.show_bomb(false)
     else
       this.show_ships(@remote.ships)
+      this.show_smoke(@remote.smoke)
       @local.visible = false
       @remote.visible = true
       if root.game.state == 'player-turn'
@@ -478,16 +514,22 @@ class root.BtlBoard
 
   show_ships: (ships) =>
     @stage.remove @ships
-
-    del = []
-    for child in @ships.children
-      del.push child
-    for child in del
-      @ships.remove child
+    clear(@ships)
     for ship in ships
       draw_ship(@ships, "#{ship.t}_#{ship.o}", p(ship.x, ship.y))
     @ships.draw
     @stage.add @ships
+
+  show_smoke: (smoke) =>
+    @stage.remove @smoke
+    clear(@smoke)
+    for sqr in smoke
+      if sqr.t == 'nuke'
+        draw_nuke(@smoke, p(sqr.x, sqr.y))
+      else if sqr.t == 'flag'
+        draw_flag(@smoke, p(sqr.x, sqr.y))
+    @smoke.draw
+    @stage.add @smoke
 
   show_bomb: (aiming) =>
     @stage.remove @bomb
@@ -495,6 +537,7 @@ class root.BtlBoard
     clear(@bomb)
 
     if aiming
+      console.log 'aiming'
       stage = @stage
       layer = @bomb
       aim = @aim
