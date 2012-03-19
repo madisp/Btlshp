@@ -277,10 +277,14 @@ class root.BtlBoard
             orientation = 'x'
           again(ship)
       )
+
+      was_placed = false
+
       ship.on('dragstart', () -> 
         console.log('dragstart')
         console.log("x: #{ship.x} y: #{ship.y}")
         ship.alpha = '0.7'
+        was_placed = ship.point?
         ship.point = undefined # "raise" the ship
         root.game.prepDone(false)
       )
@@ -307,6 +311,15 @@ class root.BtlBoard
             ny = np.y + (ymul*i)
             return false unless (nx in [0..9] and ny in [0..9] and mat[nx][ny])
           return true
+
+        if was_placed
+          # remove the ship currently in limbo, if any
+          limboship = null
+          for s in layer.children
+            if s instanceof Kinetic.Image and not s.point?
+              limboship = s
+          type_arr.unshift(limboship.type) if limboship?
+          layer.remove(limboship)
 
         if (validate(ship, np))
           ship.point = np
