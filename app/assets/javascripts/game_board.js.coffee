@@ -318,8 +318,9 @@ class root.BtlBoard
           for s in layer.children
             if s instanceof Kinetic.Image and not s.point?
               limboship = s
-          type_arr.unshift(limboship.type) if limboship?
-          layer.remove(limboship)
+          if limboship?
+            type_arr.unshift(limboship.type)
+            layer.remove(limboship)
 
         if (validate(ship, np))
           ship.point = np
