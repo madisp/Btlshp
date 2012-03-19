@@ -1,5 +1,3 @@
-# export our board obj
-
 root = exports ? this
 
 # important constants
@@ -55,6 +53,15 @@ line = (ctx, p) ->
 
 move = (ctx, p) ->
   ctx.moveTo(p.x, p.y)
+
+clear = (layer) ->
+  del = []
+  for child in layer.children
+    del.push child
+
+  for child in del
+    layer.remove child
+
 
 # init the canvas
 
@@ -129,7 +136,7 @@ ship_len = (type) ->
 valid_matrix = (layer) ->
   children = layer.children
 
-  ret = [] 
+  ret = []
 
   for x in [0...10]
     ret[x] = []
@@ -161,18 +168,28 @@ valid_matrix = (layer) ->
   ret
 
 class root.BtlBoard
+  # canvas stage
   stage: undefined
+  # drawing layers
   terrain: undefined
   prep_overlay: undefined
   ships: undefined
   smoke: undefined
   bomb: undefined
+  # raw board data
   local:
     ships: []
     smoke: []
+    visible: false
   remote:
     ships: []
     smoke: []
+    visible: false
+  # mouse helpers
+  aim:
+    x: -1
+    y: -1
+
   preload_images: (cb) =>
     n = 0
     for src in sources
@@ -345,6 +362,25 @@ class root.BtlBoard
       ready()
     )
 
+    aim = @aim
+    stage = @stage
+    bomb = @bomb
+    remote = @remote
+
+    # add the aiming controls for stage
+    @stage.on('mousemove', () ->
+      pos = stage.getMousePosition(this)
+      naim = rp(pos.x, pos.y)
+      aim.x = naim.x
+      aim.y = naim.y
+      if remote.visible
+        bomb.draw()
+    )
+    @stage.on('click', () ->
+      if aim.x in [0..9] and aim.y in [0..9] and remote.visible and root.game.state == 'player-turn'
+        root.game.fire(aim.x, aim.y)
+    )
+
   # returns an array of prepared ships
   getShips: () =>
     ships = []
@@ -424,8 +460,21 @@ class root.BtlBoard
   show_board: (who) =>
     if who == 'local'
       this.show_ships(@local.ships)
+      @local.visible = true
+      @remote.visible = false
+      # add the bomb layer for later animation
+      console.log 'bomb layer for anim only'
+      this.show_bomb(false)
     else
       this.show_ships(@remote.ships)
+      @local.visible = false
+      @remote.visible = true
+      if root.game.state == 'player-turn'
+        # add the bomb layer with aiming
+        this.show_bomb(true)
+        console.log 'bomb layer with anim and aim'
+      else
+        this.show_bomb(false)
 
   show_ships: (ships) =>
     @stage.remove @ships
@@ -439,3 +488,33 @@ class root.BtlBoard
       draw_ship(@ships, "#{ship.t}_#{ship.o}", p(ship.x, ship.y))
     @ships.draw
     @stage.add @ships
+
+  show_bomb: (aiming) =>
+    @stage.remove @bomb
+
+    clear(@bomb)
+
+    if aiming
+      stage = @stage
+      layer = @bomb
+      aim = @aim
+
+      reticle = new Kinetic.Shape(
+        drawFunc = () ->
+          ctx = this.getContext()
+          if aim.x in [0..9] and aim.y in [0..9]
+            ctx.beginPath()
+            ctx.lineWidth = 4
+            ctx.strokeStyle = 'black'
+            ctx.globalAlpha = 1.0
+            # draw reticle
+            move(ctx, p(aim.x, aim.y))
+            line(ctx, p(aim.x+1, aim.y))
+            line(ctx, p(aim.x+1, aim.y+1))
+            line(ctx, p(aim.x,   aim.y+1))
+            ctx.closePath()
+            ctx.stroke()
+      )
+      layer.add reticle
+
+    @stage.add @bomb

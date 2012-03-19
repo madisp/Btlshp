@@ -4,7 +4,7 @@ root = exports ? this
 class root.Connection
   listener: undefined
 
-  # USER FOR MOCK AI
+  # USED FOR MOCK AI
   playerShips: undefined
   aiShips: [
     {t: 'carrier', o: 'x', x: 0, y: 0},
@@ -18,12 +18,77 @@ class root.Connection
     {t: 'sub', o: 'x', x: 5, y: 3},
     {t: 'sub', o: 'x', x: 7, y: 4}
   ]
+  playerTurns: []
+  aiTurns: []
 
   commitBoard: (ships) =>
     # normally this would push the ship placement with AJAX
     # and the server would validate it. Currently we just
     # assume the board is valid
     @playerShips = ships
-    @listener.playerTurn()
 
-  setListener: (listener) => @listener = listener
+    # emulate network lag
+    this.delay(500, () =>
+      @listener.boardValidated(ships)
+      @listener.gameStarted()
+      @listener.playerTurn()
+    )
+
+  fire: (x, y) =>
+    @playerTurns.push {x: x, y: y}
+    for ship in @aiShips
+      if this.intersects(ship, x, y)
+        if this.sunk(@playerTurns, ship)
+          @listener.result({w: 'local', r: 'sunk', s: ship, x: x, y: y})
+          return
+        else
+          @listener.result({w: 'local', r: 'hit', x: x, y: y})
+          return
+    @listener.result({w: 'local', r: 'miss', x: x, y: y})
+
+  setListener: (listener) =>
+    @listener = listener
+    console.log(@listener)
+
+  delay: (time, func) =>
+    setTimeout func, time
+
+  # helper functions
+  intersects: (ship, x, y) =>
+    points = ship_points(ship)
+    for _x in [points[0].x .. points[1].x]
+      for _y in [points[0].y .. points[1].y]
+        if x == _x and y == _y
+          return true
+    return false
+
+  sunk: (turns, ship) =>
+    console.log "Checking if #{ship.t} was sunk"
+    points = ship_points(ship)
+    c = 0
+    for x in [points[0].x .. points[1].x]
+      for y in [points[0].y .. points[1].y]
+        if this.wasHit(turns, ship, x, y)
+          c += 1
+        else
+    console.log "#{c} hits vs #{ship_len(ship.t)}"
+    return c == ship_len(ship.t)
+
+  wasHit: (turns, ship, x, y) =>
+    for turn in turns
+      if turn.x == x and turn.y == y
+        return true
+    return false
+
+ship_len = (type) ->
+  switch type
+    when 'carrier' then 4
+    when 'battleship' then 3
+    when 'destroyer' then 2
+    when 'sub' then 1
+
+ship_points = (ship) ->
+  len = ship_len(ship.t)
+  switch ship.o
+    when 'x' then [{x:ship.x, y:ship.y},{x:ship.x+len-1, y:ship.y}]
+    when 'y' then [{x:ship.x, y:ship.y-len+1},{x:ship.x, y:ship.y}]
