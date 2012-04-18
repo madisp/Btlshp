@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  .row
+    .span5.offset1
+      h1 Game with XYZ - Replay
+      h3 You won!
+    .span5.user-label
+      p Signed in as 
+        != user
+  .row
+    .span10.offset1
+      hr
+      .tabbable
+        ul.nav.nav-tabs
+          li.active
+            a(href='#remote','data-toggle'='tab') "XYZ's board"
+          li
+            a(href='#local','data-toggle'='tab') "Your board"
+        .tab-content
+          #remote.tab-pane.active
+            // empty
+          #local.tab-pane
+            // empty
+      #game-canvas
+        // noempty
+      #reply-panel
+        .info-head Turn 4
+        .info-history
+          .info-head Game history
+          .well
+            ul
+              li some log lines
+        .btn-group
+          .btn
+            a(href='#') Previous
+            a(href='#') Resume replay
+            a(href='#') Next
+.row
+  .span10.offset1
+    hr
+    p maybe a chat history area? if there is time

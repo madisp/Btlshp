@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .row
+    .span5.offset1
+      h1 Lobby
+    .span5.user-label
+      p Signed in as 
+        != user
+    .span10.offset1
+      script(type='text/javascript')
+        var socket = io.connect('http://localhost:3000');
+        socket.on('lobby', function (data) {
+          console.log(data);
+        });
+        socket.on('connect', function (data) {
+          console.log('connected');
+        });
+      hr
+      table
+        tr
+          th Game
+          th Players
+          th Status

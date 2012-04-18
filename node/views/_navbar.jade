@@ -1,0 +1,35 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .row
+        .span10.offset1
+          a.brand(href='#') Battleship
+          ul.nav.pull-left
+            //
+              li
+                a(href='/lobby') Lobby
+              li
+                a(href='/game') Game
+              li.dropdown
+                a('data-toggle'='dropdown',href='#',class='dropdown-toggle') History
+                  b.caret
+                ul.dropdown-menu
+                  li.nav-header Recent games
+                  li
+                    a(href='#') Recent game #1
+                  li
+                    a(href='#') Recent game #2
+                  li
+                    a(href='#') Recent game #3
+                  li.divider
+                  li
+                    a(href='#') More...
+              li
+                a(href='#') Hall of Fame
+              li
+                a(href='#') Help
+              li
+                a(href='#') About
+          ul.nav.pull-right
+            li
+              a(href='/signout') Sign out
